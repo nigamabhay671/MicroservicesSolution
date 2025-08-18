@@ -13,6 +13,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 builder.Services.AddAutoMapper(typeof(ProductProfile));
 builder.Services.AddDbContext<CatalogDbContext>(options =>
@@ -32,13 +41,13 @@ builder.WebHost.ConfigureKestrel(options =>
 
 
 var app = builder.Build();
-
+app.UseCors("AllowAll");
 app.UseSwagger();
 app.UseSwaggerUI();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
-    db.Database.Migrate();
+    db.Database.Migrate(); // apply migrations
 }
 
 app.MapHealthChecks("/health");
@@ -49,3 +58,5 @@ app.Run();
 
 //docker build -f src/Services/CatalogService/CatalogService.Dockerfile -t catalogservice:dev.
 //docker run -p 8000:8000 catalogservice: dev
+//dotnet ef migrations add InitialCreate --project "C:\Users\abhay_nigam\MicroservicesSolution\src\Services\CatalogService\CatalogService.Infrastructure\CatalogService.Infrastructure.csproj" --startup-project "C:\Users\abhay_nigam\MicroservicesSolution\src\Services\CatalogService\CatalogService.API\CatalogService.API.csproj"
+//docker-compose up --build

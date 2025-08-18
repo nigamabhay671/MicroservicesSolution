@@ -20,3 +20,5 @@
       - ConnectionStrings__CatalogDb=Host=postgres;Port=5432;Database=CatalogDb;Username=postgres;Password=postgrespw
     ports:
       - "8000:8000"
+
+
