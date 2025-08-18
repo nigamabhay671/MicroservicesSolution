@@ -1,0 +1,22 @@
+﻿services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespw
+      POSTGRES_DB: CatalogDb
+    ports:
+      - "5432:5432"
+
+  catalogservice:
+    build:
+      context: .
+      dockerfile: src/Services/CatalogService/CatalogService.Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__CatalogDb=Host=postgres;Port=5432;Database=CatalogDb;Username=postgres;Password=postgrespw
+    ports:
+      - "8000:8000"
