@@ -23,7 +23,7 @@ jobs:
       - name: Setup .NET 9
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 9.0.x
+          dotnet-version: 9.0
 
       # Log in to GitHub Container Registry (GHCR)
       - name: Log in to GHCR
