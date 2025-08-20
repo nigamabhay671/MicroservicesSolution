@@ -1,5 +1,5 @@
 name: Build and Push Services to GHCR
-
+ 
 on:
   push:
     branches:
