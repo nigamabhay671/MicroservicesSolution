@@ -1,0 +1,48 @@
+name: Build and Test Services
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgrespw
+          POSTGRES_DB: CatalogDb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker images (Catalog + Order)
+        run: |
+          docker build -t catalogservice -f src/Services/CatalogService/CatalogService.Dockerfile .
+          docker build -t orderservice -f src/Services/OrderService/OrderService.Dockerfile .
+
+      - name: Run docker-compose for tests
+        run: |
+          docker compose -f docker-compose.override.yml up -d
+          sleep 15
+          docker ps -a
+
+      - name: Run Tests
+        run: |
+          # Example: run unit/integration tests
+          dotnet test src/Services/CatalogService/CatalogService.Tests/
