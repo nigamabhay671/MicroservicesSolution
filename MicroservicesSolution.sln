@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{984BB9B3-3FA3-BE33-9484-CAC21695A33C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CatalogService", "CatalogService", "{09734656-93E7-93B1-A2F5-3066A08F773B}"
+	ProjectSection(SolutionItems) = preProject
+		src\Services\CatalogService\CatalogService.Dockerfile = src\Services\CatalogService\CatalogService.Dockerfile
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.API", "src\Services\CatalogService\CatalogService.API\CatalogService.API.csproj", "{4534B025-5384-4501-8C2D-3CD995312CEF}"
 EndProject
@@ -16,6 +19,26 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.Domain", "src\Services\CatalogService\CatalogService.Domain\CatalogService.Domain.csproj", "{37E18340-E784-48AF-8EC0-0C76B57B8300}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.Infrastructure", "src\Services\CatalogService\CatalogService.Infrastructure\CatalogService.Infrastructure.csproj", "{F83546C5-1011-475C-B062-BDCBB06A0523}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrderService", "OrderService", "{F5625D22-DF6D-6E20-0384-6B2F7CAD8697}"
+	ProjectSection(SolutionItems) = preProject
+		OrderService.Dockerfile = OrderService.Dockerfile
+		src\Services\OrderService\OrderService_backup.Dockerfile = src\Services\OrderService\OrderService_backup.Dockerfile
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Domain", "src\Services\OrderService\OrderService.Domain\OrderService.Domain.csproj", "{EA21543D-25BC-469D-B664-CCAB5328E3DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Application", "src\Services\OrderService\OrderService.Application\OrderService.Application.csproj", "{3138C518-A729-41FA-B23A-A78FD6E70995}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Infrastructure", "src\Services\OrderService\OrderService.Infrastructure\OrderService.Infrastructure.csproj", "{D3D336A7-C372-401D-8ADB-A65223452DD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.API", "src\Services\OrderService\OrderService.API\OrderService.API.csproj", "{155846C1-E8E8-4F5C-8E23-2E9D01B85984}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.override.yml = docker-compose.override.yml
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +98,54 @@ Global
 		{F83546C5-1011-475C-B062-BDCBB06A0523}.Release|x64.Build.0 = Release|Any CPU
 		{F83546C5-1011-475C-B062-BDCBB06A0523}.Release|x86.ActiveCfg = Release|Any CPU
 		{F83546C5-1011-475C-B062-BDCBB06A0523}.Release|x86.Build.0 = Release|Any CPU
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA}.Debug|x64.Build.0 = Debug|Any CPU
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA}.Debug|x86.Build.0 = Debug|Any CPU
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA}.Release|x64.ActiveCfg = Release|Any CPU
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA}.Release|x64.Build.0 = Release|Any CPU
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA}.Release|x86.ActiveCfg = Release|Any CPU
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA}.Release|x86.Build.0 = Release|Any CPU
+		{3138C518-A729-41FA-B23A-A78FD6E70995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3138C518-A729-41FA-B23A-A78FD6E70995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3138C518-A729-41FA-B23A-A78FD6E70995}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3138C518-A729-41FA-B23A-A78FD6E70995}.Debug|x64.Build.0 = Debug|Any CPU
+		{3138C518-A729-41FA-B23A-A78FD6E70995}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3138C518-A729-41FA-B23A-A78FD6E70995}.Debug|x86.Build.0 = Debug|Any CPU
+		{3138C518-A729-41FA-B23A-A78FD6E70995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3138C518-A729-41FA-B23A-A78FD6E70995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3138C518-A729-41FA-B23A-A78FD6E70995}.Release|x64.ActiveCfg = Release|Any CPU
+		{3138C518-A729-41FA-B23A-A78FD6E70995}.Release|x64.Build.0 = Release|Any CPU
+		{3138C518-A729-41FA-B23A-A78FD6E70995}.Release|x86.ActiveCfg = Release|Any CPU
+		{3138C518-A729-41FA-B23A-A78FD6E70995}.Release|x86.Build.0 = Release|Any CPU
+		{D3D336A7-C372-401D-8ADB-A65223452DD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D336A7-C372-401D-8ADB-A65223452DD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D336A7-C372-401D-8ADB-A65223452DD9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D3D336A7-C372-401D-8ADB-A65223452DD9}.Debug|x64.Build.0 = Debug|Any CPU
+		{D3D336A7-C372-401D-8ADB-A65223452DD9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D3D336A7-C372-401D-8ADB-A65223452DD9}.Debug|x86.Build.0 = Debug|Any CPU
+		{D3D336A7-C372-401D-8ADB-A65223452DD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D336A7-C372-401D-8ADB-A65223452DD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3D336A7-C372-401D-8ADB-A65223452DD9}.Release|x64.ActiveCfg = Release|Any CPU
+		{D3D336A7-C372-401D-8ADB-A65223452DD9}.Release|x64.Build.0 = Release|Any CPU
+		{D3D336A7-C372-401D-8ADB-A65223452DD9}.Release|x86.ActiveCfg = Release|Any CPU
+		{D3D336A7-C372-401D-8ADB-A65223452DD9}.Release|x86.Build.0 = Release|Any CPU
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984}.Debug|x64.Build.0 = Debug|Any CPU
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984}.Debug|x86.Build.0 = Debug|Any CPU
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984}.Release|x64.ActiveCfg = Release|Any CPU
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984}.Release|x64.Build.0 = Release|Any CPU
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984}.Release|x86.ActiveCfg = Release|Any CPU
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,5 +157,13 @@ Global
 		{FEFDB354-EFCA-47EA-90DA-579D0C1B097B} = {09734656-93E7-93B1-A2F5-3066A08F773B}
 		{37E18340-E784-48AF-8EC0-0C76B57B8300} = {09734656-93E7-93B1-A2F5-3066A08F773B}
 		{F83546C5-1011-475C-B062-BDCBB06A0523} = {09734656-93E7-93B1-A2F5-3066A08F773B}
+		{F5625D22-DF6D-6E20-0384-6B2F7CAD8697} = {984BB9B3-3FA3-BE33-9484-CAC21695A33C}
+		{EA21543D-25BC-469D-B664-CCAB5328E3DA} = {F5625D22-DF6D-6E20-0384-6B2F7CAD8697}
+		{3138C518-A729-41FA-B23A-A78FD6E70995} = {F5625D22-DF6D-6E20-0384-6B2F7CAD8697}
+		{D3D336A7-C372-401D-8ADB-A65223452DD9} = {F5625D22-DF6D-6E20-0384-6B2F7CAD8697}
+		{155846C1-E8E8-4F5C-8E23-2E9D01B85984} = {F5625D22-DF6D-6E20-0384-6B2F7CAD8697}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0132DCEA-3646-4E6A-8F5B-B625B59E8DC5}
 	EndGlobalSection
 EndGlobal

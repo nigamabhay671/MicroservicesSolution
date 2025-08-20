@@ -1,0 +1,53 @@
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespw
+      POSTGRES_DB: CatalogDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+
+  catalogservice:
+    build:
+      context: .
+      dockerfile: src/Services/CatalogService/CatalogService.Dockerfile
+    container_name: catalogservice
+    depends_on:
+      - postgres
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__CatalogDb=Host=postgres;Port=5432;Database=CatalogDb;Username=postgres;Password=postgrespw
+    ports:
+      - "8000:8000"
+
+  orderservice:
+    build:
+      context: .
+      dockerfile: src/Services/OrderService/OrderService.Dockerfile
+    container_name: orderservice
+    depends_on:
+      - postgres
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__OrderDb=Host=postgres;Port=5432;Database=OrderDb;Username=postgres;Password=postgrespw
+    ports:
+      - "8001:8001"
+
+volumes:
+  postgres_data:

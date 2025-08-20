@@ -60,3 +60,6 @@ app.Run();
 //docker run -p 8000:8000 catalogservice: dev
 //dotnet ef migrations add InitialCreate --project "C:\Users\abhay_nigam\MicroservicesSolution\src\Services\CatalogService\CatalogService.Infrastructure\CatalogService.Infrastructure.csproj" --startup-project "C:\Users\abhay_nigam\MicroservicesSolution\src\Services\CatalogService\CatalogService.API\CatalogService.API.csproj"
 //docker-compose up --build
+
+
+//dotnet ef migrations add InitialCreate --project "C:\Users\abhay_nigam\MicroservicesSolution\src\Services\OrderService\OrderService.Infrastructure\OrderService.Infrastructure.csproj" --startup-project "C:\Users\abhay_nigam\MicroservicesSolution\src\Services\OrderService\OrderService.API\OrderService.API.csproj"
