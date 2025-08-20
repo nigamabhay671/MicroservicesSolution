@@ -3,7 +3,7 @@ name: Build and Push Services to GHCR
 on:
   push:
     branches:
-      - main   # 👈 run pipeline on push to main branch
+      - main   # Run pipeline on push to main branch
   pull_request:
 
 jobs:
@@ -12,12 +12,18 @@ jobs:
 
     permissions:
       contents: read
-      packages: write   # 👈 needed to push to GHCR
+      packages: write   # Needed to push to GHCR
 
     steps:
       # Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      # Install .NET 9 SDK
+      - name: Setup .NET 9
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
 
       # Log in to GitHub Container Registry (GHCR)
       - name: Log in to GHCR
