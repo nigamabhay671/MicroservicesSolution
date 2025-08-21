@@ -1,7 +1,6 @@
-
 services:
   postgres:
-    image: postgres:15
+    image: postgres
     container_name: postgres
     environment:
       POSTGRES_USER: postgres
@@ -9,25 +8,11 @@ services:
       POSTGRES_DB: CatalogDb
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "5050:80"
-    depends_on:
-      - postgres
 
   catalogservice:
     build:
       context: .
       dockerfile: src/Services/CatalogService/CatalogService.Dockerfile
-    container_name: catalogservice
     depends_on:
       - postgres
     environment:
@@ -40,7 +25,6 @@ services:
     build:
       context: .
       dockerfile: src/Services/OrderService/OrderService.Dockerfile
-    container_name: orderservice
     depends_on:
       - postgres
     environment:
@@ -49,5 +33,171 @@ services:
     ports:
       - "8001:8001"
 
-volumes:
-  postgres_data:
+  basketservice:
+    build:
+      context: .
+      dockerfile: src/Services/BasketService/BasketService.Dockerfile
+    depends_on:
+      - basket-redis
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__Redis=basket-redis:6379
+    ports:
+      - "8002:8002"
+
+  basket-redis:
+    image: redis:latest
+    container_name: basket-redis
+    ports:
+      - "6379:6379"
+
+
+# services:
+#   postgres:
+#     image: postgres:16
+#     container_name: ms-postgres
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: postgrespw
+#       POSTGRES_DB: postgres      # default DB; services will use their own DB names
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - pgdata:/var/lib/postgresql/data
+#     healthcheck:
+#       test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 10
+#     networks: [msnet]
+
+#   redis:
+#     image: redis:7-alpine
+#     container_name: ms-redis
+#     ports:
+#       - "6379:6379"
+#     networks: [msnet]
+
+#   catalogservice:
+#     build:
+#       context: .
+#       dockerfile: src/Services/CatalogService/CatalogService.Dockerfile
+#     environment:
+#       ASPNETCORE_ENVIRONMENT: Development
+#       ConnectionStrings__CatalogDb: Host=postgres;Port=5432;Database=CatalogDb;Username=postgres;Password=postgrespw
+#       ASPNETCORE_URLS: http://+:8000
+#     depends_on:
+#       postgres:
+#         condition: service_healthy
+#     ports:
+#       - "8000:8000"
+#     networks: [msnet]
+
+#   orderservice:
+#     build:
+#       context: .
+#       dockerfile: src/Services/OrderService/OrderService.Dockerfile
+#     environment:
+#       ASPNETCORE_ENVIRONMENT: Development
+#       ConnectionStrings__OrderDb: Host=postgres;Port=5432;Database=OrderDb;Username=postgres;Password=postgrespw
+#       ASPNETCORE_URLS: http://+:8001
+#     depends_on:
+#       postgres:
+#         condition: service_healthy
+#     ports:
+#       - "8001:8001"
+#     networks: [msnet]
+
+#   basketservice:
+#     build:
+#       context: .
+#       dockerfile: src/Services/BasketService/BasketService.Dockerfile
+#     environment:
+#       ASPNETCORE_ENVIRONMENT: Development
+#       Redis__ConnectionString: redis:6379
+
+#       ASPNETCORE_URLS: http://+:8002
+#     depends_on:
+#       - redis
+#     ports:
+#       - "8002:8002"
+#     networks: [msnet]
+
+# volumes:
+#   pgdata:
+
+# networks:
+#   msnet:
+#     driver: bridge
+
+# # services:
+# #   postgres:
+# #     image: postgres:15
+# #     container_name: postgres
+# #     environment:
+# #       POSTGRES_USER: postgres
+# #       POSTGRES_PASSWORD: postgrespw
+# #       POSTGRES_DB: CatalogDb
+# #     ports:
+# #       - "5432:5432"
+# #     volumes:
+# #       - postgres_data:/var/lib/postgresql/data
+
+# #   pgadmin:
+# #     image: dpage/pgadmin4
+# #     container_name: pgadmin
+# #     environment:
+# #       PGADMIN_DEFAULT_EMAIL: admin@admin.com
+# #       PGADMIN_DEFAULT_PASSWORD: admin
+# #     ports:
+# #       - "5050:80"
+# #     depends_on:
+# #       - postgres
+
+# #   catalogservice:
+# #     build:
+# #       context: .
+# #       dockerfile: src/Services/CatalogService/CatalogService.Dockerfile
+# #     container_name: catalogservice
+# #     depends_on:
+# #       - postgres
+# #     environment:
+# #       - ASPNETCORE_ENVIRONMENT=Development
+# #       - ConnectionStrings__CatalogDb=Host=postgres;Port=5432;Database=CatalogDb;Username=postgres;Password=postgrespw
+# #     ports:
+# #       - "8000:8000"
+
+# #   orderservice:
+# #     build:
+# #       context: .
+# #       dockerfile: src/Services/OrderService/OrderService.Dockerfile
+# #     container_name: orderservice
+# #     depends_on:
+# #       - postgres
+# #     environment:
+# #       - ASPNETCORE_ENVIRONMENT=Development
+# #       - ConnectionStrings__OrderDb=Host=postgres;Port=5432;Database=OrderDb;Username=postgres;Password=postgrespw
+# #     ports:
+# #       - "8001:8001"
+
+      
+# #   basketservice:
+# #     build:
+# #       context: .
+# #       dockerfile: src/Services/BasketService/BasketService.Dockerfile
+# #     depends_on:
+# #       - redis
+# #     environment:
+# #       - ASPNETCORE_ENVIRONMENT=Development
+# #       - ConnectionStrings__Redis=redis:6379
+# #     ports:
+# #       - "8002:8002"
+
+# #   redis:
+# #     image: redis:latest
+# #     container_name: redis
+# #     ports:
+# #       - "6379:6379"
+
+# # volumes:
+# #   postgres_data:
