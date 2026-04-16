@@ -1,8 +1,8 @@
-# MicroservicesSolution
+# claude-architect
 
-A .NET 9 microservices demonstration project implementing Clean Architecture principles with three independent, containerized services: **CatalogService**, **OrderService**, and **BasketService**.
+**Enterprise-Grade .NET 9 Microservices with AI-Powered Code Review** — A production-ready demonstration of Clean Architecture principles featuring three independent, containerized services (**CatalogService**, **OrderService**, **BasketService**) with integrated Claude AI code reviewer.
 
-> 🤖 **Powered by Claude AI** — This project features an integrated Claude Code Reviewer Skill for intelligent, context-aware code reviews tailored to Clean Architecture microservices patterns.
+> 🤖 **AI-Assisted Architecture Validation** — Features an intelligent Claude Code Reviewer Skill that provides context-aware code reviews, architecture validation, and continuous quality assurance throughout the development lifecycle.
 
 ---
 
@@ -122,18 +122,30 @@ The skill will provide a structured review covering architecture, code quality, 
 - [Contributing](#-contributing)
 - [Troubleshooting](#-troubleshooting)
 
-## 🎯 Overview
+## 🎯 Project Overview
 
-This solution demonstrates best practices for building enterprise-grade microservices using .NET 9:
+**claude-architect** is a showcase project demonstrating enterprise-grade microservices development with AI-assisted quality assurance:
 
-- **Clean Architecture**: Each service follows a four-layer architecture (Domain, Application, Infrastructure, API)
-- **Independently Deployable**: Services can be built, deployed, and scaled independently
-- **Containerized**: Docker support for consistent local development and production deployments
-- **Structured Logging**: Serilog integration for observability
-- **Validation**: FluentValidation for input validation
-- **Data Mapping**: AutoMapper for DTO transformations
-- **Database Migrations**: EF Core migrations applied automatically on startup
-- **🤖 Claude-Ready**: Integrated with AI-powered code review skill for architecture validation
+### Technical Excellence
+- ✅ **Clean Architecture**: Four-layer pattern (Domain → Application → Infrastructure → API)
+- ✅ **Independently Deployable**: Each service operates autonomously with its own data store
+- ✅ **Containerized & Orchestrated**: Docker Compose for local development & production deployment
+- ✅ **Structured Logging**: Serilog integration for comprehensive observability
+- ✅ **Type-Safe Validation**: FluentValidation for robust input handling
+- ✅ **Data Mapping**: AutoMapper for clean DTO transformations
+- ✅ **Database Migrations**: EF Core with automatic schema versioning
+
+### AI-Assisted Development
+- 🤖 **Claude Code Reviewer**: Intelligent code review skill with architectural validation
+- 📚 **Comprehensive Guidelines**: 8 reference documents covering best practices
+- 🎓 **Learning-Focused**: PR templates, checklists, and pattern examples
+- 🔍 **Multi-Dimensional Review**: Architecture, logging, async, DB, DI, security, quality
+
+### Why This Project Stands Out
+- **Production-Ready**: Not a toy project—uses enterprise patterns (DDD, repository pattern, dependency injection)
+- **AI-Enhanced**: Demonstrates integration of AI tools in development workflow
+- **Educational**: Each layer includes validation and learning resources
+- **Scalable**: Service-oriented architecture supports growth
 
 ## 🏗️ Architecture
 
@@ -237,8 +249,8 @@ DELETE /api/basket/{buyerId}
 Run all services with their dependencies:
 
 ```bash
-git clone <repository-url>
-cd MicroservicesSolution
+git clone https://github.com/<owner>/claude-architect.git
+cd claude-architect
 
 docker-compose up --build
 ```
@@ -276,13 +288,13 @@ dotnet run --project src/Services/BasketService/BasketService.API/BasketService.
 ### Building the Solution
 
 ```bash
-dotnet build MicroservicesSolution.sln
+dotnet build claude-architect.sln
 ```
 
 ### Running Tests
 
 ```bash
-dotnet test MicroservicesSolution.sln
+dotnet test claude-architect.sln
 ```
 
 ### Individual Service Development
@@ -417,30 +429,42 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 ## 📁 Project Structure
 
 ```
-MicroservicesSolution/
+claude-architect/
 ├── src/Services/
-│   ├── CatalogService/
-│   │   ├── CatalogService.API/           # Web API layer
-│   │   │   ├── Controllers/              # API endpoints
-│   │   │   ├── Program.cs                # DI & middleware setup
-│   │   │   └── appsettings.json          # Configuration
-│   │   ├── CatalogService.Application/   # Business logic layer
-│   │   │   ├── Services/                 # Application services
-│   │   │   ├── DTOs/                     # Data transfer objects
-│   │   │   └── Validators/               # FluentValidation rules
-│   │   ├── CatalogService.Domain/        # Core domain layer
-│   │   │   └── Entities/                 # Domain entities
-│   │   └── CatalogService.Infrastructure/ # Data access layer
-│   │       ├── Data/                     # DbContext, repositories
-│   │       └── Migrations/               # EF Core migrations
+│   ├── CatalogService/                   # Product Catalog Management
+│   │   ├── CatalogService.API/           # REST API Layer
+│   │   │   ├── Controllers/              # HTTP Endpoints
+│   │   │   ├── Program.cs                # DI & Middleware Configuration
+│   │   │   └── appsettings.json          # Service Configuration
+│   │   ├── CatalogService.Application/   # Business Logic Layer
+│   │   │   ├── Services/                 # Application Services
+│   │   │   ├── DTOs/                     # Data Transfer Objects
+│   │   │   └── Validators/               # FluentValidation Rules
+│   │   ├── CatalogService.Domain/        # Domain Layer (Core Business)
+│   │   │   └── Entities/                 # Domain Entities
+│   │   └── CatalogService.Infrastructure/# Data Access Layer
+│   │       ├── Data/                     # DbContext, Repositories
+│   │       └── Migrations/               # EF Core Migrations
 │   │
-│   ├── OrderService/                     # Similar structure
-│   └── BasketService/                    # Similar structure
+│   ├── OrderService/                     # Order Processing Service
+│   │   └── [Similar Clean Architecture]  # (See CatalogService pattern)
+│   │
+│   └── BasketService/                    # Shopping Basket Service
+│       └── [Similar Clean Architecture]  # Redis-backed service
 │
-├── docker-compose.yml                    # Multi-container setup
+├── .claude/                              # Claude Customization
+│   ├── CLAUDE.md                         # Project-specific guidance
+│   ├── skills/code-reviewer/             # AI Code Review Skill
+│   │   ├── SKILL.md                      # Skill definition
+│   │   ├── references/                   # Comprehensive guides
+│   │   └── templates/                    # Review templates
+│   └── .instructions.md                  # Agent instructions
+│
+├── docker-compose.yml                    # Production-like configuration
 ├── docker-compose.override.yml           # Development overrides
-├── MicroservicesSolution.sln             # Solution file
-└── README.md                             # This file
+├── claude-architect.sln                  # Visual Studio Solution
+├── README.md                             # Project Documentation
+└── .github/workflows/                    # CI/CD Pipelines
 ```
 
 ## 🛠️ Technologies
