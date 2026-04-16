@@ -2,8 +2,111 @@
 
 A .NET 9 microservices demonstration project implementing Clean Architecture principles with three independent, containerized services: **CatalogService**, **OrderService**, and **BasketService**.
 
+> 🤖 **Powered by Claude AI** — This project features an integrated Claude Code Reviewer Skill for intelligent, context-aware code reviews tailored to Clean Architecture microservices patterns.
+
+---
+
+## 🤖 Claude Code Reviewer Skill — AI-Powered Architecture Validation
+
+### What is Claude Code?
+
+**Claude Code** is an AI-powered development assistant integrated directly into VS Code that helps you write, review, and refactor code intelligently. Unlike traditional linters, Claude Code understands:
+
+- **Business Logic** — Why code exists, not just syntax
+- **Architecture Patterns** — Clean Architecture, microservices, DDD principles
+- **Context** — Your project structure and conventions
+- **Best Practices** — Industry standards for .NET 9, async patterns, security
+
+### What is the Code Reviewer Skill?
+
+A **Skill** is a specialized workflow bundled with Claude Code that you can invoke with `/skill-name`. The **code-reviewer skill** is a comprehensive, reusable code review framework specifically designed for this .NET 9 microservices project.
+
+**Invoke it in Claude Chat**:
+```bash
+/code-reviewer src/Services/CatalogService/
+/code-reviewer src/Services/OrderService/OrderService.Application/
+Review the logging implementation in BasketService
+```
+
+### 🎯 What It Does
+
+This skill performs **intelligent, holistic code reviews** across multiple dimensions:
+
+| Dimension | Coverage |
+|-----------|----------|
+| 🏗️ **Architecture** | Clean Architecture layer separation, dependency flow, layer violations |
+| 🔍 **Code Quality** | Naming conventions, readability, method complexity, LINQ patterns |
+| 📝 **Logging** | Serilog structured logging validation, log levels, sensitive data checking |
+| ⚡ **Async Patterns** | Async/await validation, blocking call detection, deadlock prevention |
+| 🗄️ **Database** | EF Core migrations, DbContext setup, repository patterns, N+1 queries |
+| 🔗 **Dependency Injection** | DI registration, lifecycle management, interface patterns |
+| 🚨 **Error Handling** | Exception handling completeness, context preservation, logging |
+| 🔒 **Security** | Hardcoded credentials, CORS configuration, sensitive data in logs |
+
+### 💡 How It Works
+
+1. **Analysis Phase** — Examines code for architectural and quality issues
+2. **Structured Evaluation** — Runs against comprehensive checklists
+3. **Contextual Feedback** — Provides file-specific, line-referenced recommendations
+4. **Actionable Guidance** — Shows good vs. bad patterns with examples
+5. **Learning Resource** — Helps teams understand and adopt best practices
+
+### 📚 Resources Available
+
+The skill includes **8 comprehensive reference documents**:
+
+- ✅ **SKILL.md** — Main skill procedure and phase-by-phase review workflow
+- ✅ **clean-architecture-checklist.md** — Domain, Application, Infrastructure, API layer validation
+- ✅ **cross-cut-checklist.md** — Logging, DI, database, security, async patterns
+- ✅ **code-quality-checklist.md** — Naming, style, comments, LINQ, method design
+- ✅ **logging-pattern.md** — Serilog setup, structured logging guide with examples
+- ✅ **dotnet-microservices-patterns.md** — .NET 9 patterns (good vs. bad) specific to this solution
+- ✅ **review-template.md** — Structured format for consistent review reporting
+- ✅ **issue-comment-template.md** — PR comment examples (praise, suggestions, issues, questions)
+
+**Location**: `.claude/skills/code-reviewer/`
+
+### 🎓 Learning Outcomes
+
+When using the code-reviewer skill, you'll learn:
+
+- ✅ How to structure .NET 9 microservices following Clean Architecture
+- ✅ Logging best practices with Serilog and structured logging
+- ✅ Dependency injection patterns and lifecycle management
+- ✅ Async/await patterns and common pitfalls
+- ✅ Security considerations for microservices
+- ✅ Database patterns with EF Core and repository pattern
+- ✅ Code quality standards for enterprise applications
+
+### 🚀 Quick Start — Using Claude Code Reviewer
+
+**1. Review an entire service:**
+```bash
+/code-reviewer src/Services/CatalogService/
+```
+
+**2. Review a specific layer:**
+```bash
+/code-reviewer src/Services/OrderService/OrderService.Application/
+```
+
+**3. Review with narrative context:**
+```bash
+Review the logging implementation in BasketService to ensure it follows Serilog patterns
+```
+
+**4. Review before merging:**
+```bash
+Review this PR for Clean Architecture compliance and logging completeness
+```
+
+The skill will provide a structured review covering architecture, code quality, cross-cutting concerns, and actionable recommendations.
+
+---
+
 ## 📋 Table of Contents
 
+- [🤖 Claude Code & Skill](#-claude-code-reviewer-skill--ai-powered-architecture-validation) ⭐ **START HERE**
 - [Overview](#overview)
 - [Architecture](#architecture)
 - [Services](#services)
@@ -14,8 +117,10 @@ A .NET 9 microservices demonstration project implementing Clean Architecture pri
 - [API Documentation](#api-documentation)
 - [Project Structure](#project-structure)
 - [Technologies](#technologies)
-- [**🤖 Claude Code Reviewer Skill**](#-claude-code-reviewer-skill) ⭐
-- [Code Review](#code-review)
+- [Code Review Details](#code-review-details)
+- [Configuration Reference](#-configuration-reference)
+- [Contributing](#-contributing)
+- [Troubleshooting](#-troubleshooting)
 
 ## 🎯 Overview
 
@@ -28,6 +133,7 @@ This solution demonstrates best practices for building enterprise-grade microser
 - **Validation**: FluentValidation for input validation
 - **Data Mapping**: AutoMapper for DTO transformations
 - **Database Migrations**: EF Core migrations applied automatically on startup
+- **🤖 Claude-Ready**: Integrated with AI-powered code review skill for architecture validation
 
 ## 🏗️ Architecture
 
@@ -353,79 +459,44 @@ MicroservicesSolution/
 
 ## 🤖 Claude Code Reviewer Skill
 
-For detailed code review guidance and best practices, see the [Claude Code Reviewer Skill](#-claude-code-reviewer-skill) section above.
+For detailed information on how to use Claude Code and the code-reviewer skill, see the [**Claude Code Reviewer Skill**](#-claude-code-reviewer-skill--ai-powered-architecture-validation) section at the top of this README.
 
-**Quick Start**:
+**Quick Usage**:
 ```bash
-# Review entire service
-/code-reviewer src/Services/CatalogService/
-
-# Review specific layer
-/code-reviewer src/Services/OrderService/OrderService.Application/
-
-# Review with context
-Review the logging implementation in BasketService
-```
-
-**Available Checklists**:
-- Clean Architecture layer compliance
-- Logging and error handling
-- Dependency injection patterns
-- Database and migration setup
-- Security and configuration
-- Code quality and naming
-- Async/await patterns
-- Testing readiness
-
-See `.claude/skills/code-reviewer/SKILL.md` for comprehensive guidance
 /code-reviewer src/Services/CatalogService/
 /code-reviewer src/Services/OrderService/
 /code-reviewer src/Services/BasketService/
 ```
 
-**Comprehensive Resources:**
-- **Main Skill File**: `.claude/skills/code-reviewer/SKILL.md`
-- **Clean Architecture Guide**: `.claude/skills/code-reviewer/references/clean-architecture-checklist.md`
-- **Cross-Cut Concerns**: `.claude/skills/code-reviewer/references/cross-cut-checklist.md`
-- **Code Quality Standards**: `.claude/skills/code-reviewer/references/code-quality-checklist.md`
-- **Logging Patterns**: `.claude/skills/code-reviewer/references/logging-pattern.md`
-- **Microservices Patterns**: `.claude/skills/code-reviewer/references/dotnet-microservices-patterns.md`
-- **Review Template**: `.claude/skills/code-reviewer/templates/review-template.md`
-- **Comment Examples**: `.claude/skills/code-reviewer/templates/issue-comment-template.md`
+## 🔍 Code Review Details
 
-**Example Use Cases:**
-1. **Before Merging** → Check if PR follows architecture standards
-2. **Feature Implementation** → Validate logging, error handling, and DI
-3. **New Developer** → Learn best practices from reviewer feedback
-4. **Architectural Changes** → Ensure layer separation and dependency flow
-5. **Refactoring** → Verify code quality improvements
+The code-reviewer skill validates across **8 key dimensions**:
 
-**Skill Features:**
-- ✅ 5-phase review procedure (Scope → Architecture → Cross-Cut → Quality → Summary)
-- ✅ Interactive checklists for consistent evaluation
-- ✅ Real code examples (good vs. bad patterns)
-- ✅ Contextual feedback with file references
-- ✅ Actionable recommendations
-- ✅ .NET 9 microservices-specific guidance
+| Dimension | What It Checks |
+|-----------|----------------|
+| 🏗️ **Architecture** | Layer separation, dependency flow, SOLID principles |
+| 📝 **Logging** | Serilog setup, structured logging, log levels |
+| ⚡ **Async Patterns** | Async/await correctness, blocking calls, deadlocks |
+| 🗄️ **Database** | EF Core, migrations, repositories, N+1 queries |
+| 🔗 **Dependency Injection** | DI registration, lifecycle, interface patterns |
+| 🚨 **Error Handling** | Exception handling, context preservation, logging |
+| 🔒 **Security** | Hardcoded credentials, CORS, sensitive data |
+| 📊 **Code Quality** | Naming, complexity, readability, LINQ patterns |
 
-## 🔍 Code Review
-
-This project includes a comprehensive **code-reviewer skill** for validating:
-
-- ✅ Clean Architecture compliance (layer separation, DI)
-- ✅ Logging and error handling (Serilog patterns)
-- ✅ Naming conventions and code quality
-- ✅ Async/await patterns (no blocking calls)
-- ✅ Database and persistence patterns
-- ✅ Security best practices
-
-**Invoke the reviewer** from Claude Chat:
-
+**All resources** (checklists, templates, patterns) are located in:
 ```
-/code-reviewer src/Services/CatalogService/
+.claude/skills/code-reviewer/
+├── SKILL.md                              # Main procedure
+├── references/                          # Comprehensive guides
+│   ├── clean-architecture-checklist.md
+│   ├── cross-cut-checklist.md
+│   ├── code-quality-checklist.md
+│   ├── logging-pattern.md
+│   └── dotnet-microservices-patterns.md
+└── templates/                           # Ready-to-use formats
+    ├── review-template.md
+    └── issue-comment-template.md
 ```
-
-See `.claude/skills/code-reviewer/SKILL.md` for full details.
 
 ## 📖 Configuration Reference
 
@@ -469,14 +540,59 @@ This project is part of the Claude Architect Certification learning path.
 
 ## 🤝 Contributing
 
-When contributing:
+This project uses **Claude Code Reviewer Skill** for guidance. Follow these principles:
 
-1. Follow Clean Architecture principles (layer separation, DI)
-2. Add logging using Serilog patterns
-3. Use FluentValidation for input validation
-4. Run `/code-reviewer` on changed files
-5. Ensure async/await patterns are used for I/O operations
-6. Update migrations if schema changes
+**Before Submitting a PR:**
+
+1. ✅ **Run code review** — Use the Claude code-reviewer skill:
+   ```bash
+   /code-reviewer src/Services/[YourService]/
+   ```
+
+2. ✅ **Follow Clean Architecture** — Ensure layer separation and DI
+   - Domain: No framework dependencies
+   - Application: Services, DTOs, validators
+   - Infrastructure: DbContext, repositories
+   - API: Thin controllers, endpoints only
+
+3. ✅ **Add structured logging** — Use Serilog patterns:
+   ```csharp
+   _logger.LogInformation("Operation: {Parameter}", value);
+   ```
+
+4. ✅ **Use FluentValidation** — Input validation in Application layer:
+   ```csharp
+   builder.Services.AddValidatorsFromAssemblyContaining<CreateProductValidator>();
+   ```
+
+5. ✅ **Async/await patterns** — No blocking calls:
+   ```csharp
+   // ✅ Good
+   var result = await _repository.GetAsync(id);
+   
+   // ❌ Bad  
+   var result = _repository.GetAsync(id).Result;
+   ```
+
+6. ✅ **Database migrations** — Update if schema changes:
+   ```bash
+   dotnet ef migrations add [MigrationName] --project [Infrastructure]
+   ```
+
+7. ✅ **Security best practices**:
+   - No hardcoded credentials
+   - Connection strings from configuration
+   - No sensitive data in logs
+
+**Review Checklist**:
+- [ ] Code passes `/code-reviewer` skill review
+- [ ] All methods have logging entry/exit
+- [ ] Async operations are properly awaited
+- [ ] Dependencies injected (not static)
+- [ ] Migrations created for schema changes
+- [ ] Error handling with context
+- [ ] No blocking calls (`.Result`, `.Wait()`)
+- [ ] DTOs separate from domain entities
 
 ## 🆘 Troubleshooting
 
@@ -531,11 +647,21 @@ dotnet ef database update --force \
   --project src/Services/CatalogService/CatalogService.Infrastructure/CatalogService.Infrastructure.csproj
 ```
 
-## 📞 Support
+## 📞 Support & Learning Resources
 
-For issues, questions, or improvements:
+**For code review & best practices guidance:**
+- 🤖 Use `/code-reviewer` skill in Claude Chat (see [top of README](#-claude-code-reviewer-skill--ai-powered-architecture-validation))
+- 📖 Read `.claude/CLAUDE.md` for project-specific guidance
+- 📚 Review `.claude/skills/code-reviewer/references/` for checklists and patterns
 
-1. Check troubleshooting guide above
+**For troubleshooting:**
+
+1. Check troubleshooting guide below
 2. Review logs via `docker-compose logs`
 3. Verify services are running with `docker-compose ps`
 4. Check `.claude/CLAUDE.md` for detailed guidance
+
+**For learning architecture patterns:**
+- See `.claude/skills/code-reviewer/references/clean-architecture-checklist.md`
+- See `.claude/skills/code-reviewer/references/dotnet-microservices-patterns.md`
+- See `.claude/skills/code-reviewer/templates/review-template.md` for review format
