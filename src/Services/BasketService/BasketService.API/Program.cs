@@ -4,8 +4,18 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
 using System;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure Serilog
+builder.Host.UseSerilog((context, configuration) =>
+    configuration
+        .MinimumLevel.Debug()
+        .WriteTo.Console()
+        .Enrich.FromLogContext()
+        .Enrich.WithProperty("Application", "BasketService")
+);
 
 builder.Services.AddCors(options =>
 {
@@ -47,6 +57,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
+
+// Log application startup
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
+logger.LogInformation("BasketService starting on port 8002");
+
 app.Run();
 
 //builder.Services.AddControllers();
